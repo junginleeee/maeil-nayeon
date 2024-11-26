@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #606060;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* 공통 스타일 */
+.circle {
+    position: absolute; /* 애니메이션 기준 위치 */
+    width: 185px;
+    height: 185px;
+    border-radius: 50%;
+    animation: grow-only 60s linear infinite; /* 크기 변화 애니메이션 */
+
+    background: radial-gradient(
+        circle,
+        rgb(0, 183, 255) 30%,   /* 중심부: 선명한 하늘색 */
+        rgba(0, 183, 255, 0.6) 60%, /* 중간부: 점점 투명해짐 */
+        rgba(61, 200, 255, 0.3) 80%, /* 외곽부: 더 투명하게 */
+        rgba(96, 96, 96, 0) 100%   
+    );
+    filter: blur(20px);
+}
+
+.gradient {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to top,
+        rgba(255, 223, 0, 1) 20%,  /* 더 강렬한 노란색 */
+        rgba(255, 223, 0, 0.8) 60%, 
+        rgba(255, 223, 0, 0) 100%);
+    animation: gradient-rise 60s linear infinite;
+    z-index: -1; /* 원보다 뒤에 배치 */
+    transform-origin: bottom; /* 아래에서 위로 자연스럽게 올라가도록 고정 */
+    filter: blur(20px);
+}
+
+/* 개별 위치 설정 */
+#top-left {
+    top: 0;
+    left: 0;
+}
+
+#top-right {
+    top: 0;
+    right: 0;
+}
+
+#bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+#bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+#top-center{
+    top:0;
+}
+
+@keyframes grow-only {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(40);
+    }
+}
+
+/* 키프레임: 그라데이션 위로 이동 */
+@keyframes gradient-rise {
+    0% {
+        transform: translateY(100%); /* 화면 아래 시작 */
+    }
+    50% {
+        transform: translateY(50%); /* 중간쯤 올라옴 */
+    }
+    100% {
+        transform: translateY(0); /* 화면 전체를 덮음 */
+    }
+}
